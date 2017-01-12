@@ -8,7 +8,7 @@
     padding-top: 10px;
     padding-right: 40px;
     padding-bottom: 10px;
-    padding-left: 20px;
+    padding-left: 10px;
     width: 350px;
     font-family:Lato, arial, sans-serif;
 }
@@ -19,6 +19,19 @@
     border:none;
 }
 
+#register-form .fieldgroup{
+    padding-bottom: 10%;
+}
+
+#register-form .checkarea{
+    padding-bottom: 10%;
+    padding-left: 30%;
+}
+
+#register-form .checkslabel{
+    padding-bottom: 1%;
+    padding-left: 30%;
+}
 
 #register-form .fieldgroup input[type=text]{
     margin: 10px 0;
@@ -27,6 +40,7 @@
     border:solid #3D86B4 1px;
     border-radius:3px;
     padding-left:10px;
+    margin-left:10px;
 }
 
 #register-form .fieldgroup input[type=radio] {
@@ -38,15 +52,15 @@
 }
 
 
-#register-form label {
 
-    width: 20px;
-}
 
 
 #register-form .submit {
-    padding: 10px;
-    margin-left: 50px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    margin-left: 60px;
     width:75%;
     height: 40px !important;
     background:#7BA6C0;
