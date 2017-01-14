@@ -23,10 +23,11 @@
     <li><a href="#conocimientos">Conocimientos</a></li>
     <li><a href="#estudios">Estudios</a></li>
     <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#ajaxtodolist">Tareas</a></li>
   </ul>
 </nav>
 <div id="cv" class="fade01">
-  <div id="headArea" >
+  <div id="headArea">
     <div id="headPhoto">
       <img src="./imgs/twitter_photo.jpeg" alt="Fede Ruiz"/>
       <div id="headName">
@@ -46,19 +47,19 @@
     </div>
   </div>
   <div class="divisor"></div>
-  <div id="mainArea" >
+  <div id="mainArea">
     <div id="perfil" class="container">
       <section>
-        <div  class="titleSec">
+        <div class="titleSec">
           <h1>Perfil personal.</h1>
         </div>
         <div class="contentSec">
           <article>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dolor metus, interdum at
-            scelerisque in,
-            porta at lacus. Maecenas dapibus luctus cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis
-            dignissim. Proin id sapien quis libero interdum porttitor.</p>
+              scelerisque in,
+              porta at lacus. Maecenas dapibus luctus cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis
+              dignissim. Proin id sapien quis libero interdum porttitor.</p>
           </article>
         </div>
       </section>
@@ -153,7 +154,7 @@
         </div>
 
         <div class="contentSec">
-          <form method="post" id="register-form">
+          <form method="post" id="register-form" action="#" onsubmit="return validacionFormulario()">
             <div id="form-content">
               <div class="fields">
 
@@ -161,7 +162,7 @@
                   <input type="text" id="nombreForm" name="nombre" placeholder="Nombre"/>
                   <input type="text" id="apellidoForm" name="apellido" placeholder="Apellidos"/>
                   <input type="text" id="emailForm" name="email" placeholder="E-mail"/>
-                  <input type="text" id="phoneForm" name="phone" placeholder="Teléfono"/>
+                  <input type="text" id="phoneForm" name="phone" placeholder="Teléfono +34 123 456 789 ó 123 456 789 "/>
                 </div>
 
                 <div class="checkslabel">
@@ -170,35 +171,60 @@
 
                 <div class="fieldgroup checkarea">
                   <div>
-                    <input class="radio-input" type="radio" name="user_level" id="rd1" value="Google" checked="checked"/>
+                    <input class="radio-input" type="radio" name="tipopubli" id="rd1" value="Google" checked="checked"/>
                     <label class="radio-label" for="rd1">Google</label>
                   </div>
                   <div>
-                    <input class="radio-input" type="radio" name="user_level" id="rd2" value="Anuncio Web"/>
+                    <input class="radio-input" type="radio" name="tipopubli" id="rd2" value="Anuncio Web"/>
                     <label class="radio-label" for="rd2">Anuncio Web</label>
                   </div>
                   <div>
-                    <input class="radio-input" type="radio" name="user_level" id="rd3" value="Otro"/>
+                    <input class="radio-input" type="radio" name="tipopubli" id="rd3" value="Otro"/>
                     <label class="radio-label" for="rd3">Otro</label>
+                    <div class="eloculto">
+                      <textarea id="textoEscondido" placeholder="Dime algo bonito!" cols="50" rows="15"></textarea>
+                    </div>
                   </div>
                 </div>
-
-                <div class="fieldgroup">
-                  <input type="submit" value="Enviar" class="submit">
-                </div>
-
               </div>
+            </div>
+            <div>
+              <input type="submit" value="Enviar" class="submit" id="botonenvio">
             </div>
           </form>
         </div>
+
       </section>
     </div>
     <div class="divisor"></div>
+    <div id="ajaxtodolist" class="container">
+      <section>
+        <div class="titleSec">
+          <h1>Lista de Tareas</h1>
+        </div>
+        <div class="contentSec">
+          <div id="ajaxapp">
+            <form id="formulario-todo">
+              <input id="crear-tarea" name="descripcionTarea" type="text" placeholder="Añade un item a la lista!">
+            </form>
+            <ul id="listaTareas">
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
     <div id="footer" class="container">
 
     </div>
   </div>
 </div>
+<ul id='plantillaTarea' class="NOeloculto">
+  <li class='tarea' data-id="some id">
+    <img class='complete-button' src="./imgs/completeTask.png" height="30"/>
+    <div class="taskDescription">Plantilla de tarea</div>
+    <img class='delete-button' src="./imgs/deleteTask.png" height="30"/>
+  </li>
+</ul>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>!window.jQuery && document.write('<script src="./js/jquery-3.1.1.js"><\/script>')</script>

@@ -1,5 +1,5 @@
 #register-form {
-    background:#fff;
+    /*background:#fff;*/
     border: 1px solid #2C6081;
     border-radius: 15px 15px 15px 15px;
     margin-bottom: 30px;
@@ -13,7 +13,9 @@
     font-family:Lato, arial, sans-serif;
 }
 
-
+.form-content{
+    padding-top: 200px;
+}
 
 .fields{
     border:none;
@@ -52,28 +54,47 @@
 }
 
 
+.eloculto {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
 
+input[type="radio"]:checked ~ .eloculto{
+    position: inherit;
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
+    opacity: 1;
+    max-height: 50px; /* little bit of a magic number :( */
+    overflow: visible;
+}
 
 #register-form .submit {
+
+    display: block;
+    text-align: center;
+    transform: scale(1);
+    margin-top: 10px;
+    /*region
+
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 15px;
     margin-left: 60px;
-    width:75%;
+
+    */
+
+    width: 75%;
     height: 40px !important;
-    background:#7BA6C0;
-    color:#fff;
-    font-weight:bolder;
-    border:solid #2C6081 2px;
-    border-radius:3px;
+    background: #7BA6C0;
+    color: #fff;
+    font-weight: bolder;
+    border: solid #2C6081 2px;
+    border-radius: 3px;
 }
-
-
-
-
-
 
 
 
@@ -83,5 +104,27 @@
     font-weight:500;
     padding: 0;
     text-align: left;
+}
+
+.tarea{
+    padding-top: 25px;
+}
+
+.complete-button{
+    display: inline-block;
+    margin-left:10px;
+}
+
+
+.taskDescription{
+    display: inline-block;
+    margin-left:10px;
+    vertical-align: middle;
+    padding-bottom: 25px;
+}
+
+.delete-button{
+    display: inline-block;
+    margin-left:10px;
 }
 
