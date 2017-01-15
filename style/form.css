@@ -156,13 +156,13 @@ input[type="radio"]:checked ~ .eloculto{
 .completed{
     border: 1px solid #2C6081;
     border-radius: 15px 15px 15px 15px;
-    background-color: #278035;
+    background-color: #478057;
 }
 
 .uncompleted{
     border: 1px solid #2C6081;
     border-radius: 15px 15px 15px 15px;
-    background-color: #d3555f;
+    background-color: #d36d74;
 }
 
 .complete-button{
