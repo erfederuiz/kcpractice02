@@ -58,17 +58,24 @@
     opacity: 0;
     max-height: 0;
     overflow: hidden;
+    display: block;
+}
+
+.NOeloculto {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    display: block;
 }
 
 input[type="radio"]:checked ~ .eloculto{
-    position: inherit;
-    display: block;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
+    position: relative;
     opacity: 1;
-    max-height: 50px; /* little bit of a magic number :( */
-    overflow: visible;
+    max-height: 200px;
+    max-width: 200px;
+    margin-top: 25px;
+    overflow: scroll;
+    border: 1px;
 }
 
 #register-form .submit {
@@ -77,16 +84,8 @@ input[type="radio"]:checked ~ .eloculto{
     text-align: center;
     transform: scale(1);
     margin-top: 10px;
-    /*region
-
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
     padding-left: 15px;
     margin-left: 60px;
-
-    */
-
     width: 75%;
     height: 40px !important;
     background: #7BA6C0;

@@ -23,7 +23,7 @@
     <li><a href="#conocimientos">Conocimientos</a></li>
     <li><a href="#estudios">Estudios</a></li>
     <li><a href="#contacto">Contacto</a></li>
-    <li><a href="#ajaxtodolist">Tareas</a></li>
+    <li><a href="#ajaxtodolist">Sugerencias</a></li>
   </ul>
 </nav>
 <div id="cv" class="fade01">
@@ -156,6 +156,9 @@
         <div class="contentSec">
           <form method="post" id="register-form" action="#" onsubmit="return validacionFormulario()">
             <div id="form-content">
+              <div class="checkslabel">
+                <label>Regístrate y crea una lista de sugerencias.</label>
+              </div>
               <div class="fields">
 
                 <div class="fieldgroup">
@@ -189,7 +192,7 @@
               </div>
             </div>
             <div>
-              <input type="submit" value="Enviar" class="submit" id="botonenvio">
+              <input type="submit" value="Registrárse." class="submit" id="botonenvio">
             </div>
           </form>
         </div>
@@ -200,12 +203,27 @@
     <div id="ajaxtodolist" class="container">
       <section>
         <div class="titleSec">
-          <h1>Lista de Tareas</h1>
+          <h1>Sugerencias</h1>
         </div>
         <div class="contentSec">
           <div id="ajaxapp">
-            <form id="formulario-todo">
-              <input id="crear-tarea" name="descripcionTarea" type="text" placeholder="Añade un item a la lista!">
+            <form method="post" id="ajaxtask-form" action="#ajaxtodolist" onsubmit="return validacionListaAjax()">
+              <div id="form-ajax">
+                <div class="fields">
+                  <div class="fieldgroup">
+                    <input type="text" id="nombreListaAjax" name="nombre" placeholder="Nombre"/>
+                    <input type="text" id="apellidoListaAjax" name="apellido" placeholder="Apellidos"/>
+                  </div>
+                </div>
+                <div>
+                  <input type="button" value="Recuperar sugerencias." class="submit" id="botonEnvioAjax" onClick="validacionListaAjax();">
+                </div>
+                <div>
+                  <input type="text" id="descripcionElementoAjax" name="descripcionElementoAjax" placeholder="Descripción sugerencia."/>
+                </div>
+                <div>
+                  <input type="button" value="Crear sugerencia." class="submit" id="botonCrearAjax" onClick="insercionElementoAjax();">
+                </div>
             </form>
             <ul id="listaTareas">
             </ul>
@@ -219,7 +237,7 @@
   </div>
 </div>
 <ul id='plantillaTarea' class="NOeloculto">
-  <li class='tarea' data-id="some id">
+  <li class='tarea' task-id="some id">
     <img class='complete-button' src="./imgs/completeTask.png" height="30"/>
     <div class="taskDescription">Plantilla de tarea</div>
     <img class='delete-button' src="./imgs/deleteTask.png" height="30"/>
