@@ -208,22 +208,24 @@
         <div class="contentSec">
           <div id="ajaxapp">
             <form method="post" id="ajaxtask-form" action="#ajaxtodolist" onsubmit="return validacionListaAjax()">
-              <div id="form-ajax">
-                <div class="fields">
-                  <div class="fieldgroup">
-                    <input type="text" id="nombreListaAjax" name="nombre" placeholder="Nombre"/>
-                    <input type="text" id="apellidoListaAjax" name="apellido" placeholder="Apellidos"/>
-                  </div>
+
+
+              <div class="fieldgroupAjax">
+                <div>
+                  <input type="text" id="nombreListaAjax" name="nombre" placeholder="Nombre"/>
+                  <input type="text" id="apellidoListaAjax" name="apellido" placeholder="Apellidos"/>
+                  <input type="button" value="Recuperar sugerencias." class="submit" id="botonEnvioAjax"
+                         onClick="validacionListaAjax();">
                 </div>
                 <div>
-                  <input type="button" value="Recuperar sugerencias." class="submit" id="botonEnvioAjax" onClick="validacionListaAjax();">
+                  <input type="text" id="descripcionElementoAjax" name="descripcionElementoAjax"
+                         placeholder="Descripción sugerencia."/>
+                  <input type="button" value="Crear sugerencia." class="submit" id="botonCrearAjax"
+                         onClick="insercionElementoAjax();">
                 </div>
-                <div>
-                  <input type="text" id="descripcionElementoAjax" name="descripcionElementoAjax" placeholder="Descripción sugerencia."/>
-                </div>
-                <div>
-                  <input type="button" value="Crear sugerencia." class="submit" id="botonCrearAjax" onClick="insercionElementoAjax();">
-                </div>
+              </div>
+
+
             </form>
             <ul id="listaTareas">
             </ul>
@@ -239,7 +241,7 @@
 <ul id='plantillaTarea' class="NOeloculto">
   <li class='tarea' task-id="some id">
     <img class='complete-button' src="./imgs/completeTask.png" height="30"/>
-    <div class="taskDescription">Plantilla de tarea</div>
+    <span class="taskDescription">Plantilla de tarea</span>
     <img class='delete-button' src="./imgs/deleteTask.png" height="30"/>
   </li>
 </ul>

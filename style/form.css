@@ -105,25 +105,85 @@ input[type="radio"]:checked ~ .eloculto{
     text-align: left;
 }
 
-.tarea{
+#ajaxtask-form{
+    border-top: 1px solid #2C6081;
+    /* border-radius: 15px 15px 15px 15px; */
+    width: auto;
+    height: 150px;
+    display: block;
+}
+
+.fieldgroupAjax {
+    margin: 10px 0;
+    height: 40px;
+    margin-left:10px;
+}
+
+#ajaxtask-form .fieldgroupAjax input[type=text]{
+    display: inline-block;
+    margin: 10px 0;
+    height: 40px;
+    border:solid #3D86B4 1px;
+    border-radius:3px;
+    padding-left:10px;
+}
+
+#ajaxtask-form .fieldgroupAjax input[type=button]{
+    display: inline-block;
+    text-align: center;
+    transform: scale(1);
+    height: 40px !important;
+    background: #7BA6C0;
+    color: #fff;
+    font-weight: bolder;
+    border: solid #2C6081 2px;
+    border-radius: 3px;
+}
+
+#listaTareas{
+    display: block;
     padding-top: 25px;
 }
 
-.complete-button{
+.tarea{
     display: inline-block;
-    margin-left:10px;
+    vertical-align: middle;
+    margin-top: 10px;
+    height: 50px;
+    width: 100%;
+}
+
+.completed{
+    border: 1px solid #2C6081;
+    border-radius: 15px 15px 15px 15px;
+    background-color: #278035;
+}
+
+.uncompleted{
+    border: 1px solid #2C6081;
+    border-radius: 15px 15px 15px 15px;
+    background-color: #d3555f;
+}
+
+.complete-button{
+    margin:10px;
+    float: left;
 }
 
 
 .taskDescription{
-    display: inline-block;
-    margin-left:10px;
-    vertical-align: middle;
-    padding-bottom: 25px;
+    display: inline;
+    position: relative;
+    margin-left:50px;
+    padding-left: 25px;
+    width:100%;
+    max-width: 300px;
 }
 
 .delete-button{
-    display: inline-block;
+    float: right;
     margin-left:10px;
+    margin-top: 10px;
+    margin-right: 10px;
 }
 

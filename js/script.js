@@ -137,14 +137,10 @@ var validacionListaAjax = function () {
     return false;
   } else {
     var idListaEnServidor = nombre + "_" + apellido;
-
-    var list = document.getElementById("listaTareas");
-    while (list.hasChildNodes()) {
-      list.removeChild(list.firstChild);
-    }
+    limpiarListaPantalla();
     recuperarListaAjax(idListaEnServidor);
     return true;
-  }
+  };
 }
 
 // Crear una lista en el servidor AJAX listalous.herokuapp.com/lists
@@ -161,10 +157,18 @@ var crearListaEnServer = function ($nombre, $apellido) {
   )
 };
 
+var limpiarListaPantalla = function(){
+  var list = document.getElementById("listaTareas");
+  while (list.hasChildNodes()) {
+    list.removeChild(list.firstChild);
+  }
+};
+
 var recuperarListaAjax = function ($idListaEnServidor){
 
   var urlContent = { };
   urlContent = "https://listalous.herokuapp.com/lists/" + $idListaEnServidor +"/";
+
   var loadRequest = $.ajax({
     type: 'GET',
     url: urlContent
@@ -172,20 +176,13 @@ var recuperarListaAjax = function ($idListaEnServidor){
 
 
  loadRequest.done(function(dataFromServer) {
-   var itemsData = dataFromServer.items
+   var itemsData = dataFromServer.items;
 
    itemsData.forEach(function(itemData) {
-   insertarElementoLista(itemData)
+   insertarElementoLista(itemData);
  })
  })
-
-
-
-
 };
-
-
-
 
 // Insertar un elemento de la lista como div en la página
 var insertarElementoLista = function (datosElemento) {
@@ -197,9 +194,62 @@ var insertarElementoLista = function (datosElemento) {
   elemento.find('.taskDescription').text(datosElemento.description)
   if (datosElemento.completed) {
     elemento.addClass('completed')
+  }else{
+    elemento.addClass('uncompleted')
   }
   htmlListaTareas.append(elemento)
 }
 
 
+$('#listaTareas').on('click', '.complete-button', function(event) {
+  var nombre = document.getElementById("nombreListaAjax").value;
+  var apellido = document.getElementById("apellidoListaAjax").value;
+// Comprobaciones
+  if (nombre == "" || apellido == "") {
+    alert("Nombre y apellidos son obligatorios.....!");
+    return false;
+  } else {
+    var idListaEnServidor = nombre + "_" + apellido;
 
+
+    var item = $(event.target).parent();
+    var isItemCompleted = item.hasClass('completed');
+    isItemCompleted = !isItemCompleted;
+    var itemId = item.attr('task-id');
+
+    urlContent = "https://listalous.herokuapp.com/lists/" + idListaEnServidor + "/items/" + itemId;
+    var updateRequest = $.ajax({
+      type: 'PUT',
+      url: urlContent ,
+      data: {completed: isItemCompleted}
+    })
+    limpiarListaPantalla();
+    recuperarListaAjax(idListaEnServidor);
+  }
+});
+
+
+$('#listaTareas').on('click', '.delete-button', function(event) {
+  var nombre = document.getElementById("nombreListaAjax").value;
+  var apellido = document.getElementById("apellidoListaAjax").value;
+// Comprobaciones
+  if (nombre == "" || apellido == "") {
+    alert("Nombre y apellidos son obligatorios.....!");
+    return false;
+  } else {
+    var idListaEnServidor = nombre + "_" + apellido;
+
+
+    var item = $(event.target).parent();
+    var isItemCompleted = item.hasClass('completed');
+    var itemId = item.attr('task-id');
+
+    urlContent = "https://listalous.herokuapp.com/lists/" + idListaEnServidor + "/items/" + itemId;
+    var updateRequest = $.ajax({
+      type: 'DELETE',
+      url: urlContent
+    })
+    limpiarListaPantalla();
+    recuperarListaAjax(idListaEnServidor);
+  }
+});
