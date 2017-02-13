@@ -147,7 +147,7 @@ var validacionListaAjax = function () {
 var crearListaEnServer = function ($nombre, $apellido) {
   var idListaEnServidor = $nombre + "_" + $apellido;
   var dataContent = { };
-  dataContent['data'] = idListaEnServidor;
+  dataContent['name'] = idListaEnServidor;
   $.ajax({
       type: 'POST',
       url: 'https://listalous.herokuapp.com/lists',
