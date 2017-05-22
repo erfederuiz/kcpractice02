@@ -44,23 +44,7 @@ function validacionFormulario() {
 
 // Comprobaciones
   if (nombre == "" || apellido == "" || email == "" || phone == "") {
-    if(nombre == ""){
-      alert("Se requiere el primer nombre.....!");
-      return false;
-    }
-    if(apellido == ""){
-      alert("El apellido es obligatorio.....!");
-      return false;
-    }
-    if(email == ""){
-      alert("correo electronico es requerido.....!");
-      return false;
-    }
-    if(phone == ""){
-      alert("El número de teléfono es obligatorio.....!");
-      return false;
-    }
-    //alert("Todos los campos son obligatorios.....!");
+    alert("Todos los campos son obligatorios.....!");
     return false;
   } else {
 
@@ -73,12 +57,7 @@ function validacionFormulario() {
     (document.getElementById("rd3").checked && contarPalabras() < 150 ) ? true : false;
 
     if (estadoEmail && estadoPhone && estadoConocimiento) {
-      var lista_heroku = crearListaEnServer(nombre, apellido);
-      //Crear una primera sugerencia de ejemplo y activar la sección sugerencias
-      establecerSugerenciaEjemplo(nombre, apellido, "Sugerencia de ejemplo" );
-      document.location+='#ajaxtodolist';
-      $(".sugerencias_bg").addClass("active");
-      insercionElementoAjax();
+      crearListaEnServer(nombre, apellido);
       return true;
     } else {
       var mensaje = "Errores al validar:\n"
@@ -98,43 +77,24 @@ function validacionFormulario() {
   }
 }
 
-function establecerSugerenciaEjemplo($nombre, $apellido, $sugerencia ){
-  var boxNombre = document.getElementById("nombreListaAjax");
-  var boxApellido = document.getElementById("apellidoListaAjax");
-  var boxDescripcionSugerencia = document.getElementById("descripcionElementoAjax");
-
-  boxNombre.value = $nombre;
-  boxApellido.value = $apellido;
-  boxDescripcionSugerencia.value = $sugerencia  ;
-
-}
 
 //FUNCIONES AJAX TO-DO LIST
 
 
-// Crear una lista en el servidor AJAX listalous.herokuapp.com/lists
-var crearListaEnServer = function ($nombre, $apellido) {
+/*
+ var itemTemplate = $('#templates .item')
+ var list         = $('#list')
 
-  var form = new FormData();
-  var idLista = $nombre + "_" + $apellido;
-  var msg = 'done ajax';
-  return $.ajax({
-    type: 'POST',
-    // make sure you respect the same origin policy with this url:
-    // http://en.wikipedia.org/wiki/Same_origin_policy
-    url: 'http://listalous.herokuapp.com/lists',
-    data: {
-      'name': idLista
-    },
-    completed: function(msg){
-      console.log('wow' + msg);
-    }
-  });
-
-
-};
-
-
+ var addItemToPage = function(itemData) {
+ var item = itemTemplate.clone()
+ item.attr('data-id',itemData.id)
+ item.find('.description').text(itemData.description)
+ if(itemData.completed) {
+ item.addClass('completed')
+ }
+ list.append(item)
+ }
+ */
 var insercionElementoAjax = function (){
   var descripcionSugerencia = document.getElementById("descripcionElementoAjax").value;
   if (descripcionSugerencia == ""){
@@ -147,28 +107,25 @@ var insercionElementoAjax = function (){
       alert("Nombre y apellidos son obligatorios.....!");
       return false;
     }else{
-      insercionItemLista(nombre, apellido, descripcionSugerencia)
+      var idListaEnServidor = nombre + "_" + apellido;
+      var urlContent = { };
+      var dataContent = { };
+      urlContent = "https://listalous.herokuapp.com/lists/" + idListaEnServidor +"/items";
+      dataContent['description'] = descripcionSugerencia;
+      dataContent['completed'] = 'false' ;
+
+      var creationRequest = $.ajax({
+        type: 'POST',
+        url: urlContent ,
+        data: dataContent
+      })
+
+      creationRequest.done(function(itemDataFromServer) {
+        insertarElementoLista(itemDataFromServer)
+      })
+
     }
   }
-}
-
-var insercionItemLista = function($nombre, $apellido, $descripcionSugerencia ){
-  var idListaEnServidor = $nombre + "_" + $apellido;
-  var urlContent = { };
-  var dataContent = { };
-  urlContent = "https://listalous.herokuapp.com/lists/" + idListaEnServidor +"/items";
-  dataContent['description'] = $descripcionSugerencia;
-  dataContent['completed'] = 'false' ;
-
-  var creationRequest = $.ajax({
-    type: 'POST',
-    url: urlContent ,
-    data: dataContent
-  })
-
-  creationRequest.done(function(itemDataFromServer) {
-    insertarElementoLista(itemDataFromServer)
-  })
 }
 
 var validacionListaAjax = function () {
@@ -186,7 +143,19 @@ var validacionListaAjax = function () {
   };
 }
 
+// Crear una lista en el servidor AJAX listalous.herokuapp.com/lists
+var crearListaEnServer = function ($nombre, $apellido) {
+  var idListaEnServidor = $nombre + "_" + $apellido;
+  var dataContent = { };
+  dataContent['name'] = idListaEnServidor;
+  $.ajax({
+      type: 'POST',
+      url: 'https://listalous.herokuapp.com/lists',
+      data: dataContent
+    }
 
+  )
+};
 
 var limpiarListaPantalla = function(){
   var list = document.getElementById("listaTareas");
@@ -252,14 +221,10 @@ $('#listaTareas').on('click', '.complete-button', function(event) {
     var updateRequest = $.ajax({
       type: 'PUT',
       url: urlContent ,
-      data: {completed: isItemCompleted},
-      complete: function () {
-        limpiarListaPantalla();
-        recuperarListaAjax(idListaEnServidor);
-      }
+      data: {completed: isItemCompleted}
     })
-    //limpiarListaPantalla();
-    //recuperarListaAjax(idListaEnServidor);
+    limpiarListaPantalla();
+    recuperarListaAjax(idListaEnServidor);
   }
 });
 
@@ -282,20 +247,9 @@ $('#listaTareas').on('click', '.delete-button', function(event) {
     urlContent = "https://listalous.herokuapp.com/lists/" + idListaEnServidor + "/items/" + itemId;
     var updateRequest = $.ajax({
       type: 'DELETE',
-      url: urlContent,
-      complete: function () {
-        limpiarListaPantalla();
-        recuperarListaAjax(idListaEnServidor);
-      }
+      url: urlContent
     })
-    //limpiarListaPantalla();
-    //recuperarListaAjax(idListaEnServidor);
+    limpiarListaPantalla();
+    recuperarListaAjax(idListaEnServidor);
   }
 });
-
-$('.top_main_nav li a').on('click', function(){
-  var id = $(this).attr('href');
-  $('.bg-with-titles').removeClass('active');
-  $(id+' .bg-with-titles').addClass('active');
-});
-

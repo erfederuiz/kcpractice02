@@ -83,42 +83,10 @@ p {
 	z-index:5;
 	overflow:auto;
 }
-.perfil_bg.active, 
-.experiencia_bg.active, 
-.conocimientos_bg.active, 
-.estudios_bg.active,
-.contacto_bg.active,
-.sugerencias_bg.active {
-    -webkit-filter: grayscale(0%);
-    color: #000!important;
-    text-shadow: 0px 0px 25px #fff;
-}
-.bg-with-titles {
-    background-image: url(../imgs/sections/active/01a_section_perfil.jpg);
-    -webkit-filter: grayscale(100%);
-    min-height: 217px;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    color: #fff!important;
-    text-shadow: 0px 0px 15px #000;
-    padding: 20px 0 0 20px;
-}
 
-.perfil_bg{
-    background-image: url(../imgs/sections/active/01a_section_perfil.jpg);}
-.experiencia_bg{
-    background-image: url(../imgs/sections/active/02a_section_experiencia.jpg);}
-.conocimientos_bg{
-    background-image: url(../imgs/sections/active/03a_section_conocimiento.jpg);}
-.estudios_bg{
-    background-image: url(../imgs/sections/active/04a_section_estudios_certificaciones.jpg);}
-.contacto_bg{
-    background-image: url(../imgs/sections/active/05a_section_contact.jpg);}
-.sugerencias_bg{
-    background-image: url(../imgs/sections/active/06a_section_sugerencias.jpg);}
 #headArea {
 	display: inline-block;
-	/*margin-bottom: 20%;*/
+	margin-bottom: 20%;
 	border-bottom: 1px solid #222D34;
 	background: #ededed;
 	position: relative;
@@ -238,9 +206,7 @@ ideo-responsive {
 }
 
 #ajaxtodolist{
-    /* padding-bottom: 100%; */
-    float: left;
-    width: 100%;
+	padding-bottom: 100%;
 }
 
 section {
@@ -271,27 +237,6 @@ section:last-child {
 	font-style: italic;
 	font-size: 1.5em;
 	color: #2C6081;
-}
-
-div#footer > p {
-    float: left;
-    width: 100%;
-    margin: 0;
-    text-align: center;
-}
-
-div#footer {
-    border-top: 2px #7ba6c0 solid;
-    float: left;
-    width: 100%;
-    margin-top: 100px;
-    padding: 10px 0;
-}
-
-.video_wrapper{
-	float: left;
-    width: 100%;
-    overflow: hidden;
 }
 
 .contentSec h2 {
